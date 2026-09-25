@@ -1,24 +1,17 @@
-name: Jobs and Steps Demo
+name: Runner Demo
 on:
   workflow_dispatch:
 jobs:
-  build:
-    name: Build Job
+  runner-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Build application
-        run: echo "Building application..."
-      - name: Build completed
-        run: echo "Build successful!"
-  test:
-    name: Test Job
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test 1
-        run: echo "Running test 1"
-      - name: Test 2
-        run: echo "Running test 2"
-      - name: Tests completed
-        run: echo "All tests passed!"
+      - name: Show hostname
+        run: hostname
+      - name: Show operating system
+        run: uname -a
+      - name: Show current directory
+        run: pwd
+      - name: Show files
+        run: ls -la
+      - name: Show Python version
+        run: python --version
