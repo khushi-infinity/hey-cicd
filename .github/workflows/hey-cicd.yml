@@ -1,17 +1,17 @@
-name: Runner Demo
+name: Secrets Demo
 on:
   workflow_dispatch:
 jobs:
-  runner-info:
+  secrets-demo:
     runs-on: ubuntu-latest
     steps:
-      - name: Show hostname
-        run: hostname
-      - name: Show operating system
-        run: uname -a
-      - name: Show current directory
-        run: pwd
-      - name: Show files
-        run: ls -la
-      - name: Show Python version
-        run: python --version
+      - name: Check secret
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+        run: |
+          if [ -n "$DEMO_SECRET" ]; then
+            echo "Secret is available."
+          else
+            echo "Secret is not configured."
+            exit 1
+          fi
